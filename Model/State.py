@@ -16,7 +16,7 @@ class State:
         self.literals = set(
             literals
         )  # Convert literals to a set
-        self.parent = None
+        self.parent: Optional["State"] = None
 
     def goal_test(self, goal):
         is_all_positive = goal.literals.issubset(self.literals)

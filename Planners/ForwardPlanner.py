@@ -26,7 +26,7 @@ class ForwardPlanner(Planner):
         if self.problem.initial_state.goal_test(goal):
             return []
 
-        # Add initial state to frontier and visited set
+        # Add initial state to frontier and visited set (Forward: Init -> Goal)
         frontier.put(self.problem.initial_state)
         visited.add(self.problem.initial_state)
         while not frontier.empty():
@@ -49,6 +49,12 @@ class ForwardPlanner(Planner):
 
     def successor(self, current_state: State) -> list[State]:
         result = []
-        # don't forget to set parent
-        ...
+
+        for action in self.problem.domain.actions:
+            if action.is_applicable(current_state):
+                next_state = action.progress(current_state)
+                next_state.parent = current_state
+                result.append(next_state)
+
         return result
+

@@ -8,10 +8,11 @@ from Problems.Problem import Problem
 class Block(Problem):
     def __init__(self, domain: Domain):
         super().__init__(domain)
-        Block1 = Entity("Block1", "Block")
-        Block2 = Entity("Block2", "Block")
-        Block3 = Entity("Block3", "Block")
-        Table = Entity("Table", "Table")
+        Block1 = domain.entities[0]
+        Block2 = domain.entities[1]
+        Block3 = domain.entities[2]
+        Table = domain.table
+
 
         on_3_table = Predicate("On", [Block3, Table])
         on_2_3 = Predicate("On", [Block2, Block3])
